@@ -1,0 +1,21 @@
+<h2>Employee List</h2>
+<!-- Add new employee-->
+<div>
+  <label>Employee Name:</label><input #employeeName>
+  <button (click)="add(employeeName.value); employeeName.value=''">Add</button>
+</div>
+<!-- Employee List display-->
+<ul class="employees">
+  <li *ngFor ="let employee of employees" 
+      (click)="onSelect(employee)" 
+      [class.selected]="employee === selectedEmployee">
+    <span class="badge">{{employee.id}}</span> 
+    <span>{{employee.name}}</span>
+    <button class="delete" (click)="delete(employee); $event.stopPropagation()">x</button>
+  </li>
+</ul>
+<div *ngIf="selectedEmployee">
+
+  <h2>{{selectedEmployee.name | uppercase }} is my Best Employee</h2>
+  <button (click)="gotoDetail()">View Details</button>
+</div>

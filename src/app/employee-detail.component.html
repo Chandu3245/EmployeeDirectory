@@ -1,0 +1,14 @@
+<div *ngIf="employee">
+    <h4> {{employee.name}} details! </h4>
+    <div><label>Id: </label>{{employee.id}}</div>
+    <div>
+        <label>Name: </label>
+        <input [(ngModel)]="employee.name" placeholder="name">
+    </div>
+</div>
+<div>
+    <button (click)="goBack()">Back</button>
+</div>
+<div>
+    <button (click)="Save()">Save</button>
+</div>
