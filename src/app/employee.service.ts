@@ -46,10 +46,7 @@ export class EmployeeService{
                     .then(response => response.json().data as Employee[])
                     .catch(this.handleError);
     }
-    private handleError(error: any): Promise<any>{
-            console.error('An error occured', error);//for demo pirpose only
-            return Promise.reject(error.message || error);
-    }
+    
 
     update(employee: Employee): Promise<Employee>{
         const url = `${this.employeesUrl}/${employee.id}`;
@@ -70,6 +67,10 @@ export class EmployeeService{
         .toPromise()
         .then(() => null)
         .catch(this.handleError);
+    }
+    private handleError(error: any): Promise<any>{
+            console.error('An error occured', error);//for demo pirpose only
+            return Promise.reject(error.message || error);
     }
 }
 

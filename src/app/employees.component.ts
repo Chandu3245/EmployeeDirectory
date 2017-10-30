@@ -17,7 +17,28 @@ export class EmployeesComponent implements OnInit {
   selectedEmployee: Employee;
   constructor(private empService: EmployeeService,private router: Router){}
   
-  ngOnInit(){
+ 
+  /*Add employee 
+  add(name: string): void{
+    name = name.trim();
+    if(!name){
+      return;
+    }
+    this.empService.create(name)
+        .then(employee => {this.employees.push(employee);
+                            this.selectedEmployee = null;
+        });
+  }*/
+  /*Remove Employee */
+  delete(employee: Employee): void{
+    this.empService.delete(employee.id)
+        .then(() => {
+          this.employees = this.employees.filter(e => e !== employee);
+          if(this.selectedEmployee === employee ){ this.selectedEmployee = null;}
+        });
+  }
+  
+   ngOnInit(){
     this.getEmployees();
   }
 
@@ -28,29 +49,9 @@ export class EmployeesComponent implements OnInit {
     this.empService.getEmployees().then(employees => this.employees = employees);
   }
 
-  
 
   gotoDetail(): void{
     this.router.navigate(['/detail', this.selectedEmployee]);
-  }
-  /*Add employee */
-  add(name: string): void{
-    name = name.trim();
-    if(!name){
-      return;
-    }
-    this.empService.create(name)
-        .then(employee => {this.employees.push(employee);
-                            this.selectedEmployee = null;
-        })
-  }
-  /*Remove Employee */
-  delete(employee: Employee): void{
-    this.empService.delete(employee.id)
-        .then(() => {
-          this.employees = this.employees.filter(e => e !== employee);
-          if(this.selectedEmployee === employee ){ this.selectedEmployee = null;}
-        });
   }
   
 }

@@ -17,7 +17,7 @@ import { Employee } from './employee';
 
 @Component({
     selector: 'employee-search',
-    templateUrl: ',/employee-search.component.html',
+    templateUrl: './employee-search.component.html',
     styleUrls: ['./employee-search.component.css'],
     providers: [EmployeeSearchService]
 })
